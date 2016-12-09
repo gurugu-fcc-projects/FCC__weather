@@ -36,9 +36,9 @@ constructor(props) {
     this.getWeather();
   }
 
-  getCurrentLocation() {
-    fetch('http://ip-api.com/json').then(response => response.json()).then(data => console.log(data));
-  }
+  // getCurrentLocation() {
+  //   fetch('http://ip-api.com/json').then(response => response.json()).then(data => console.log(data));
+  // }
 
   // use API
   getWeather(cityName) {
@@ -178,4 +178,6 @@ constructor(props) {
   }
 }
 
-ReactDOM.render(<Main />, document.getElementById('container'));
+document.addEventListener('DOMContentLoaded', function() {
+  ReactDOM.render(<Main />, document.getElementById('container'));
+});
