@@ -22532,13 +22532,17 @@
 	    { id: "input", role: "form", name: "search-form", onSubmit: function onSubmit(event) {
 	        return handleSubmit(event);
 	      } },
-	    _react2.default.createElement("input", { id: "input-field", type: "text", placeholder: "Enter city here", value: props.cityName, onChange: function onChange(event) {
-	        return props.changeCity(event.target.value);
-	      } }),
 	    _react2.default.createElement(
-	      "button",
-	      { id: "input-button", type: "submit" },
-	      _react2.default.createElement("i", { className: "fa fa-search fa-flip-horizontal" })
+	      "div",
+	      null,
+	      _react2.default.createElement("input", { id: "input-field", type: "text", placeholder: "Enter city here", value: props.cityName, onChange: function onChange(event) {
+	          return props.changeCity(event.target.value);
+	        } }),
+	      _react2.default.createElement(
+	        "button",
+	        { id: "input-button", type: "submit" },
+	        _react2.default.createElement("i", { className: "fa fa-search fa-flip-horizontal" })
+	      )
 	    )
 	  );
 	};
