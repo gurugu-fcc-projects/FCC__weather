@@ -115,10 +115,6 @@
 	      this.getWeather();
 	    }
 
-	    // getCurrentLocation() {
-	    //   fetch('http://ip-api.com/json').then(response => response.json()).then(data => console.log(data));
-	    // }
-
 	    // use API
 
 	  }, {
@@ -164,7 +160,6 @@
 	      fetch(link).then(function (response) {
 	        return response.json();
 	      }).then(function (data) {
-	        console.log(data);
 	        _this3.setState({
 	          collection: {
 	            humidity: Math.round(data.main.humidity) + '%',

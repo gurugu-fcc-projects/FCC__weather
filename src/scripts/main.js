@@ -36,10 +36,6 @@ constructor(props) {
     this.getWeather();
   }
 
-  // getCurrentLocation() {
-  //   fetch('http://ip-api.com/json').then(response => response.json()).then(data => console.log(data));
-  // }
-
   // use API
   getWeather(cityName) {
     let link = '',
@@ -75,7 +71,6 @@ constructor(props) {
     fetch(link)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         this.setState({
           collection: {
             humidity: Math.round(data.main.humidity) + '%',
