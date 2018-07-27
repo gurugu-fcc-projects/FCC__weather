@@ -1,28 +1,28 @@
 import React from "react";
 
-const WeatherCard = props => {
-  let frontSide =
-      props.collection.humidity === undefined ? (
+const WeatherCard = ({ collection, flipOverValue, flipOver }) => {
+  const frontSide =
+      collection.humidity === undefined ? (
         <div className="weather-card-front-loading">Loading...</div>
       ) : (
         <div>
           <div className="weather-card-front-weather">
-            <i className={props.collection.icon} />
+            <i className={collection.icon} />
           </div>
           <div className="weather-card-front-temperature">
-            {props.collection.temp}
+            {collection.temp}
           </div>
         </div>
       ),
     backside =
-      props.collection.humidity === undefined ? (
+      collection.humidity === undefined ? (
         <div className="weather-card-back-loading">Loading...</div>
       ) : (
         <div>
           <div className="weather-card-back-humidity">
             <div>Humidity</div>
             <div className="weather-card-back-humidity-value">
-              {props.collection.humidity}
+              {collection.humidity}
             </div>
           </div>
           <div className="weather-card-back-wind">
@@ -31,7 +31,7 @@ const WeatherCard = props => {
                 Wind direction
               </div>
               <div className="weather-card-back-wind-card-direction">
-                <i className={props.collection.windDirection} />
+                <i className={collection.windDirection} />
               </div>
             </div>
             <div className="weather-card-back-wind-card">
@@ -39,7 +39,7 @@ const WeatherCard = props => {
                 Wind speed
               </div>
               <div className="weather-card-back-wind-card-speed">
-                {props.collection.windSpeed}
+                {collection.windSpeed}
               </div>
             </div>
           </div>
@@ -48,10 +48,7 @@ const WeatherCard = props => {
 
   return (
     <div id="content">
-      <div
-        className={"weather-card " + props.flipOverValue}
-        onClick={() => props.flipOver()}
-      >
+      <div className={"weather-card " + flipOverValue} onClick={flipOver}>
         <div className="weather-card-front">{frontSide}</div>
         <div className="weather-card-back">{backside}</div>
       </div>

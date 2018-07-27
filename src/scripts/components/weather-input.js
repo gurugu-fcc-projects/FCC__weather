@@ -1,9 +1,13 @@
 import React from "react";
 
-const WeatherInput = props => {
+const WeatherInput = ({ cityName, getWeather, changeCity }) => {
   const handleSubmit = event => () => {
     event.preventDefault();
-    props.getWeather(props.cityName);
+    getWeather(cityName);
+  };
+
+  const handleChangeCity = event => () => {
+    changeCity(event.target.value);
   };
 
   return (
@@ -18,8 +22,8 @@ const WeatherInput = props => {
           id="input-field"
           type="text"
           placeholder="Enter city here"
-          value={props.cityName}
-          onChange={event => props.changeCity(event.target.value)}
+          value={cityName}
+          onChange={handleChangeCity(event)}
         />
         <button id="input-button" type="submit">
           <i className="fa fa-search fa-flip-horizontal" />
