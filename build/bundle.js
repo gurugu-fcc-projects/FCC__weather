@@ -222,8 +222,8 @@
 	          _this4.setState({
 	            tempUnits: "celcius",
 	            collection: Object.assign(collection, {
-	              temp: collection.tempFahrenheit,
-	              windSpeed: collection.windSpeedMiles
+	              temp: collection.tempCelcius,
+	              windSpeed: collection.windSpeedMeters
 	            })
 	          });
 	        }
