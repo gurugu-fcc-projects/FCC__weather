@@ -110,8 +110,8 @@
 	  }
 
 	  _createClass(Main, [{
-	    key: "componentDidMount",
-	    value: function componentDidMount() {
+	    key: "componentWillMount",
+	    value: function componentWillMount() {
 	      // display weather for the current position
 	      this.getWeather();
 	    }

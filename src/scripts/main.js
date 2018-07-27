@@ -32,7 +32,7 @@ class Main extends Component {
     this.flipOver = this.flipOver.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     // display weather for the current position
     this.getWeather();
   }
