@@ -110,8 +110,8 @@
 	  }
 
 	  _createClass(Main, [{
-	    key: "componentDidMount",
-	    value: function componentDidMount() {
+	    key: "componentWillMount",
+	    value: function componentWillMount() {
 	      // display weather for the current position
 	      this.getWeather();
 	    }
@@ -123,8 +123,8 @@
 	    value: function getWeather(cityName) {
 	      var _this2 = this;
 
-	      var link = "",
-	          googleLink = "";
+	      var link = "";
+	      var googleLink = "";
 
 	      this.setState({
 	        collection: {}
@@ -166,7 +166,7 @@
 	            humidity: Math.round(data.main.humidity) + "%",
 	            tempCelcius: Math.round((data.main.temp - 32) * 5 / 9) + "\xB0C",
 	            tempFahrenheit: Math.round(data.main.temp) + "\xB0F",
-	            temp: Math.round((data.main.temp - 32) * 5 / 9) + "\xB0C",
+	            temp: _this3.state.tempUnits === "celcius" ? Math.round((data.main.temp - 32) * 5 / 9) + "\xB0C" : Math.round(data.main.temp) + "\xB0F",
 	            windSpeedMeters: Math.round(data.wind.speed) + " m/s",
 	            windSpeedMiles: Math.round(data.wind.speed / 1609 * 3600) + " mph",
 	            windSpeed: Math.round(data.wind.speed) + " m/s",
@@ -182,8 +182,9 @@
 	  }, {
 	    key: "dayOrNight",
 	    value: function dayOrNight() {
-	      var today = new Date(),
-	          hour = today.getHours();
+	      var today = new Date();
+	      var hour = today.getHours();
+
 	      if (hour > 6 && hour < 20) {
 	        return "day-";
 	      } else {
@@ -198,7 +199,10 @@
 	    value: function changeTempUnits() {
 	      var _this4 = this;
 
-	      var selector = this.state.collection;
+	      var _state = this.state,
+	          tempUnits = _state.tempUnits,
+	          collection = _state.collection;
+
 
 	      $(".weather-card-back-wind-card-speed").animate({
 	        opacity: 0
@@ -206,19 +210,21 @@
 	      $(".weather-card-front-temperature").animate({
 	        opacity: 0
 	      }, 500, function () {
-	        if (_this4.state.tempUnits === "celcius") {
-	          selector.temp = _this4.state.collection.tempFahrenheit;
-	          selector.windSpeed = _this4.state.collection.windSpeedMiles;
+	        if (tempUnits === "celcius") {
 	          _this4.setState({
 	            tempUnits: "fahrenheit",
-	            collection: selector
+	            collection: Object.assign(collection, {
+	              temp: collection.tempFahrenheit,
+	              windSpeed: collection.windSpeedMiles
+	            })
 	          });
 	        } else {
-	          selector.temp = _this4.state.collection.tempCelcius;
-	          selector.windSpeed = _this4.state.collection.windSpeedMeters;
 	          _this4.setState({
 	            tempUnits: "celcius",
-	            collection: selector
+	            collection: Object.assign(collection, {
+	              temp: collection.tempFahrenheit,
+	              windSpeed: collection.windSpeedMiles
+	            })
 	          });
 	        }
 	        $(".weather-card-front-temperature").animate({
@@ -242,7 +248,10 @@
 	  }, {
 	    key: "flipOver",
 	    value: function flipOver() {
-	      if (this.state.flipOverValue.length === 0) {
+	      var flipOverValue = this.state.flipOverValue;
+
+
+	      if (flipOverValue.length === 0) {
 	        this.setState({
 	          flipOverValue: "flip-over"
 	        });
@@ -255,22 +264,29 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
+	      var _state2 = this.state,
+	          city = _state2.city,
+	          flipOverValue = _state2.flipOverValue,
+	          collection = _state2.collection,
+	          tempUnits = _state2.tempUnits;
+
+
 	      return _react2.default.createElement(
 	        "div",
 	        null,
 	        _react2.default.createElement(_weatherInput2.default, {
 	          getWeather: this.getWeather,
 	          changeCity: this.changeCity,
-	          cityName: this.state.city
+	          cityName: city
 	        }),
 	        _react2.default.createElement(_weatherCard2.default, {
 	          flipOver: this.flipOver,
-	          flipOverValue: this.state.flipOverValue,
-	          collection: this.state.collection
+	          flipOverValue: flipOverValue,
+	          collection: collection
 	        }),
 	        _react2.default.createElement(_weatherUnitsButton2.default, {
 	          changeTempUnits: this.changeTempUnits,
-	          temperatureUnits: this.state.tempUnits
+	          temperatureUnits: tempUnits
 	        })
 	      );
 	    }
@@ -23316,16 +23332,12 @@
 	      changeCity = _ref.changeCity;
 
 	  var handleSubmit = function handleSubmit(event) {
-	    return function () {
-	      event.preventDefault();
-	      getWeather(cityName);
-	    };
+	    event.preventDefault();
+	    getWeather(cityName);
 	  };
 
 	  var handleChangeCity = function handleChangeCity(event) {
-	    return function () {
-	      changeCity(event.target.value);
-	    };
+	    changeCity(event.target.value);
 	  };
 
 	  return _react2.default.createElement(
@@ -23334,7 +23346,9 @@
 	      id: "input",
 	      role: "form",
 	      name: "search-form",
-	      onSubmit: handleSubmit(event)
+	      onSubmit: function onSubmit(event) {
+	        return handleSubmit(event);
+	      }
 	    },
 	    _react2.default.createElement(
 	      "div",
@@ -23344,7 +23358,9 @@
 	        type: "text",
 	        placeholder: "Enter city here",
 	        value: cityName,
-	        onChange: handleChangeCity(event)
+	        onChange: function onChange(event) {
+	          return handleChangeCity(event);
+	        }
 	      }),
 	      _react2.default.createElement(
 	        "button",
@@ -23506,17 +23522,17 @@
 	      changeTempUnits = _ref.changeTempUnits;
 
 	  var handleChangeTempUnits = function handleChangeTempUnits(event) {
-	    return function () {
-	      event.preventDefault();
-	      changeTempUnits();
-	    };
+	    event.preventDefault();
+	    changeTempUnits();
 	  };
 
 	  return _react2.default.createElement(
 	    "div",
 	    {
 	      className: "toggle-temp-unit " + temperatureUnits,
-	      onClick: handleChangeTempUnits(event)
+	      onClick: function onClick(event) {
+	        return handleChangeTempUnits(event);
+	      }
 	    },
 	    _react2.default.createElement(
 	      "div",

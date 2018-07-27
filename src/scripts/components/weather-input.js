@@ -1,7 +1,7 @@
 import React from "react";
 
 const WeatherInput = ({ cityName, getWeather, changeCity }) => {
-  const handleSubmit = event => () => {
+  const handleSubmit = event => {
     event.preventDefault();
     getWeather(cityName);
   };
@@ -15,7 +15,7 @@ const WeatherInput = ({ cityName, getWeather, changeCity }) => {
       id="input"
       role="form"
       name="search-form"
-      onSubmit={handleSubmit(event)}
+      onSubmit={event => handleSubmit(event)}
     >
       <div>
         <input
