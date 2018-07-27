@@ -23323,9 +23323,7 @@
 	  };
 
 	  var handleChangeCity = function handleChangeCity(event) {
-	    return function () {
-	      changeCity(event.target.value);
-	    };
+	    changeCity(event.target.value);
 	  };
 
 	  return _react2.default.createElement(
@@ -23344,7 +23342,9 @@
 	        type: "text",
 	        placeholder: "Enter city here",
 	        value: cityName,
-	        onChange: handleChangeCity(event)
+	        onChange: function onChange(event) {
+	          return handleChangeCity(event);
+	        }
 	      }),
 	      _react2.default.createElement(
 	        "button",
@@ -23506,17 +23506,17 @@
 	      changeTempUnits = _ref.changeTempUnits;
 
 	  var handleChangeTempUnits = function handleChangeTempUnits(event) {
-	    return function () {
-	      event.preventDefault();
-	      changeTempUnits();
-	    };
+	    event.preventDefault();
+	    changeTempUnits();
 	  };
 
 	  return _react2.default.createElement(
 	    "div",
 	    {
 	      className: "toggle-temp-unit " + temperatureUnits,
-	      onClick: handleChangeTempUnits(event)
+	      onClick: function onClick(event) {
+	        return handleChangeTempUnits(event);
+	      }
 	    },
 	    _react2.default.createElement(
 	      "div",
