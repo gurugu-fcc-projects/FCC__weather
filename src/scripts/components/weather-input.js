@@ -6,7 +6,7 @@ const WeatherInput = ({ cityName, getWeather, changeCity }) => {
     getWeather(cityName);
   };
 
-  const handleChangeCity = event => () => {
+  const handleChangeCity = event => {
     changeCity(event.target.value);
   };
 
@@ -23,7 +23,7 @@ const WeatherInput = ({ cityName, getWeather, changeCity }) => {
           type="text"
           placeholder="Enter city here"
           value={cityName}
-          onChange={handleChangeCity(event)}
+          onChange={event => handleChangeCity(event)}
         />
         <button id="input-button" type="submit">
           <i className="fa fa-search fa-flip-horizontal" />
