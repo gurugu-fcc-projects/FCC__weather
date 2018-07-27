@@ -39,8 +39,8 @@ class Main extends Component {
 
   // use API
   getWeather(cityName) {
-    let link = "",
-      googleLink = "";
+    let link = "";
+    let googleLink = "";
 
     this.setState({
       collection: {}
@@ -101,8 +101,9 @@ class Main extends Component {
 
   // check time of day
   dayOrNight() {
-    var today = new Date(),
-      hour = today.getHours();
+    const today = new Date();
+    const hour = today.getHours();
+
     if (hour > 6 && hour < 20) {
       return "day-";
     } else {
@@ -112,7 +113,7 @@ class Main extends Component {
 
   // imperial or metric units
   changeTempUnits() {
-    let selector = this.state.collection;
+    const { tempUnits, collection } = this.state;
 
     $(".weather-card-back-wind-card-speed").animate(
       {
@@ -126,19 +127,23 @@ class Main extends Component {
       },
       500,
       () => {
-        if (this.state.tempUnits === "celcius") {
-          selector.temp = this.state.collection.tempFahrenheit;
-          selector.windSpeed = this.state.collection.windSpeedMiles;
+        if (tempUnits === "celcius") {
           this.setState({
             tempUnits: "fahrenheit",
-            collection: selector
+            collection: {
+              ...collection,
+              temp: collection.tempFahrenheit,
+              windSpeed: collection.windSpeedMiles
+            }
           });
         } else {
-          selector.temp = this.state.collection.tempCelcius;
-          selector.windSpeed = this.state.collection.windSpeedMeters;
           this.setState({
             tempUnits: "celcius",
-            collection: selector
+            collection: {
+              ...collection,
+              temp: collection.tempCelcius,
+              windSpeed: collection.windSpeedMeters
+            }
           });
         }
         $(".weather-card-front-temperature").animate(
@@ -165,7 +170,9 @@ class Main extends Component {
 
   // flip over the weather card
   flipOver() {
-    if (this.state.flipOverValue.length === 0) {
+    const { flipOverValue } = this.state;
+
+    if (flipOverValue.length === 0) {
       this.setState({
         flipOverValue: "flip-over"
       });
@@ -177,21 +184,23 @@ class Main extends Component {
   }
 
   render() {
+    const { city, flipOverValue, collection, tempUnits } = this.state;
+
     return (
       <div>
         <WeatherInput
           getWeather={this.getWeather}
           changeCity={this.changeCity}
-          cityName={this.state.city}
+          cityName={city}
         />
         <WeatherCard
           flipOver={this.flipOver}
-          flipOverValue={this.state.flipOverValue}
-          collection={this.state.collection}
+          flipOverValue={flipOverValue}
+          collection={collection}
         />
         <WeatherUnitsButton
           changeTempUnits={this.changeTempUnits}
-          temperatureUnits={this.state.tempUnits}
+          temperatureUnits={tempUnits}
         />
       </div>
     );
