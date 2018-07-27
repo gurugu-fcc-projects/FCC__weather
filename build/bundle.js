@@ -166,7 +166,7 @@
 	            humidity: Math.round(data.main.humidity) + "%",
 	            tempCelcius: Math.round((data.main.temp - 32) * 5 / 9) + "\xB0C",
 	            tempFahrenheit: Math.round(data.main.temp) + "\xB0F",
-	            temp: Math.round((data.main.temp - 32) * 5 / 9) + "\xB0C",
+	            temp: _this3.state.tempUnits === "celcius" ? Math.round((data.main.temp - 32) * 5 / 9) + "\xB0C" : Math.round(data.main.temp) + "\xB0F",
 	            windSpeedMeters: Math.round(data.wind.speed) + " m/s",
 	            windSpeedMiles: Math.round(data.wind.speed / 1609 * 3600) + " mph",
 	            windSpeed: Math.round(data.wind.speed) + " m/s",
