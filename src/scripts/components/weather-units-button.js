@@ -1,7 +1,7 @@
 import React from "react";
 
 const WeatherUnitsButton = ({ temperatureUnits, changeTempUnits }) => {
-  const handleChangeTempUnits = event => () => {
+  const handleChangeTempUnits = event => {
     event.preventDefault();
     changeTempUnits();
   };
@@ -9,7 +9,7 @@ const WeatherUnitsButton = ({ temperatureUnits, changeTempUnits }) => {
   return (
     <div
       className={"toggle-temp-unit " + temperatureUnits}
-      onClick={handleChangeTempUnits(event)}
+      onClick={event => handleChangeTempUnits(event)}
     >
       <div className="cel">Celcius</div>
       <div className="fah">Fahrenheit</div>
