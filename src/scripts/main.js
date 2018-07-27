@@ -130,20 +130,18 @@ class Main extends Component {
         if (tempUnits === "celcius") {
           this.setState({
             tempUnits: "fahrenheit",
-            collection: {
-              ...collection,
+            collection: Object.assign(collection, {
               temp: collection.tempFahrenheit,
               windSpeed: collection.windSpeedMiles
-            }
+            })
           });
         } else {
           this.setState({
             tempUnits: "celcius",
-            collection: {
-              ...collection,
-              temp: collection.tempCelcius,
-              windSpeed: collection.windSpeedMeters
-            }
+            collection: Object.assign(collection, {
+              temp: collection.tempFahrenheit,
+              windSpeed: collection.windSpeedMiles
+            })
           });
         }
         $(".weather-card-front-temperature").animate(
