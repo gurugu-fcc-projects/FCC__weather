@@ -110,8 +110,8 @@
 	  }
 
 	  _createClass(Main, [{
-	    key: "componentWillMount",
-	    value: function componentWillMount() {
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
 	      // display weather for the current position
 	      this.getWeather();
 	    }
@@ -23310,11 +23310,21 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var WeatherInput = function WeatherInput(props) {
+	var WeatherInput = function WeatherInput(_ref) {
+	  var cityName = _ref.cityName,
+	      getWeather = _ref.getWeather,
+	      changeCity = _ref.changeCity;
+
 	  var handleSubmit = function handleSubmit(event) {
 	    return function () {
 	      event.preventDefault();
-	      props.getWeather(props.cityName);
+	      getWeather(cityName);
+	    };
+	  };
+
+	  var handleChangeCity = function handleChangeCity(event) {
+	    return function () {
+	      changeCity(event.target.value);
 	    };
 	  };
 
@@ -23333,10 +23343,8 @@
 	        id: "input-field",
 	        type: "text",
 	        placeholder: "Enter city here",
-	        value: props.cityName,
-	        onChange: function onChange(event) {
-	          return props.changeCity(event.target.value);
-	        }
+	        value: cityName,
+	        onChange: handleChangeCity(event)
 	      }),
 	      _react2.default.createElement(
 	        "button",
@@ -23371,8 +23379,12 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var WeatherCard = function WeatherCard(props) {
-	  var frontSide = props.collection.humidity === undefined ? _react2.default.createElement(
+	var WeatherCard = function WeatherCard(_ref) {
+	  var collection = _ref.collection,
+	      flipOverValue = _ref.flipOverValue,
+	      flipOver = _ref.flipOver;
+
+	  var frontSide = collection.humidity === undefined ? _react2.default.createElement(
 	    "div",
 	    { className: "weather-card-front-loading" },
 	    "Loading..."
@@ -23382,15 +23394,15 @@
 	    _react2.default.createElement(
 	      "div",
 	      { className: "weather-card-front-weather" },
-	      _react2.default.createElement("i", { className: props.collection.icon })
+	      _react2.default.createElement("i", { className: collection.icon })
 	    ),
 	    _react2.default.createElement(
 	      "div",
 	      { className: "weather-card-front-temperature" },
-	      props.collection.temp
+	      collection.temp
 	    )
 	  ),
-	      backside = props.collection.humidity === undefined ? _react2.default.createElement(
+	      backside = collection.humidity === undefined ? _react2.default.createElement(
 	    "div",
 	    { className: "weather-card-back-loading" },
 	    "Loading..."
@@ -23408,7 +23420,7 @@
 	      _react2.default.createElement(
 	        "div",
 	        { className: "weather-card-back-humidity-value" },
-	        props.collection.humidity
+	        collection.humidity
 	      )
 	    ),
 	    _react2.default.createElement(
@@ -23425,7 +23437,7 @@
 	        _react2.default.createElement(
 	          "div",
 	          { className: "weather-card-back-wind-card-direction" },
-	          _react2.default.createElement("i", { className: props.collection.windDirection })
+	          _react2.default.createElement("i", { className: collection.windDirection })
 	        )
 	      ),
 	      _react2.default.createElement(
@@ -23439,7 +23451,7 @@
 	        _react2.default.createElement(
 	          "div",
 	          { className: "weather-card-back-wind-card-speed" },
-	          props.collection.windSpeed
+	          collection.windSpeed
 	        )
 	      )
 	    )
@@ -23450,12 +23462,7 @@
 	    { id: "content" },
 	    _react2.default.createElement(
 	      "div",
-	      {
-	        className: "weather-card " + props.flipOverValue,
-	        onClick: function onClick() {
-	          return props.flipOver();
-	        }
-	      },
+	      { className: "weather-card " + flipOverValue, onClick: flipOver },
 	      _react2.default.createElement(
 	        "div",
 	        { className: "weather-card-front" },
@@ -23494,18 +23501,23 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var WeatherUnitsButton = function WeatherUnitsButton(props) {
+	var WeatherUnitsButton = function WeatherUnitsButton(_ref) {
+	  var temperatureUnits = _ref.temperatureUnits,
+	      changeTempUnits = _ref.changeTempUnits;
 
-	  function changeTempUnits(event) {
-	    event.preventDefault();
-	    props.changeTempUnits();
-	  }
+	  var handleChangeTempUnits = function handleChangeTempUnits(event) {
+	    return function () {
+	      event.preventDefault();
+	      changeTempUnits();
+	    };
+	  };
 
 	  return _react2.default.createElement(
 	    "div",
-	    { className: "toggle-temp-unit " + props.temperatureUnits, onClick: function onClick(event) {
-	        return changeTempUnits(event);
-	      } },
+	    {
+	      className: "toggle-temp-unit " + temperatureUnits,
+	      onClick: handleChangeTempUnits(event)
+	    },
 	    _react2.default.createElement(
 	      "div",
 	      { className: "cel" },

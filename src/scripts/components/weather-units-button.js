@@ -1,20 +1,21 @@
-import React from 'react';
+import React from "react";
 
-const WeatherUnitsButton = (props) => {
-
-  function changeTempUnits(event) {
+const WeatherUnitsButton = ({ temperatureUnits, changeTempUnits }) => {
+  const handleChangeTempUnits = event => () => {
     event.preventDefault();
-    props.changeTempUnits();
-  }
+    changeTempUnits();
+  };
 
   return (
-    <div className={"toggle-temp-unit " + props.temperatureUnits} onClick={(event) => changeTempUnits(event)}>
+    <div
+      className={"toggle-temp-unit " + temperatureUnits}
+      onClick={handleChangeTempUnits(event)}
+    >
       <div className="cel">Celcius</div>
       <div className="fah">Fahrenheit</div>
     </div>
   );
-
-}
+};
 
 WeatherUnitsButton.propTypes = {
   changeTempUnits: React.PropTypes.func.isRequired,
