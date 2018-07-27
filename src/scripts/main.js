@@ -86,7 +86,10 @@ class Main extends Component {
             tempCelcius:
               Math.round(((data.main.temp - 32) * 5) / 9) + "\u00B0C",
             tempFahrenheit: Math.round(data.main.temp) + "\u00B0F",
-            temp: Math.round(((data.main.temp - 32) * 5) / 9) + "\u00B0C",
+            temp:
+              this.state.tempUnits === "celcius"
+                ? Math.round(((data.main.temp - 32) * 5) / 9) + "\u00B0C"
+                : Math.round(data.main.temp) + "\u00B0F",
             windSpeedMeters: Math.round(data.wind.speed) + " m/s",
             windSpeedMiles:
               Math.round((data.wind.speed / 1609) * 3600) + " mph",
