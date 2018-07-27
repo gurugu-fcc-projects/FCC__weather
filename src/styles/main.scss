@@ -1,10 +1,10 @@
-$white       : #fff;
-$font-color  : #1D3557;
-$input-color : #1D3557;
-$card-color  : #A8DADC;
-$button-color: #E63946;
+$white: #fff;
+$font-color: #1d3557;
+$input-color: #1d3557;
+$card-color: #a8dadc;
+$button-color: #e63946;
 
-$stack-sans-serif: 'Alegreya Sans', sans-serif;
+$stack-sans-serif: "Alegreya Sans", sans-serif;
 
 body {
   font-family: $stack-sans-serif;
@@ -57,13 +57,13 @@ body {
   border-bottom-right-radius: 7px;
   outline: 0;
   cursor: pointer;
-  -webkit-transition: background-color .2s linear, color .2s linear;
-  -moz-transition: background-color .2s linear, color .2s linear;
-  transition: background-color .2s linear, color .2s linear;
+  -webkit-transition: background-color 0.2s linear, color 0.2s linear;
+  -moz-transition: background-color 0.2s linear, color 0.2s linear;
+  transition: background-color 0.2s linear, color 0.2s linear;
   & i {
-    -webkit-transition: -webkit-transform .5s linear;
-    -moz-transition: -moz-transform .5s linear;
-    transition: transform .5s linear;
+    -webkit-transition: -webkit-transform 0.5s linear;
+    -moz-transition: -moz-transform 0.5s linear;
+    transition: transform 0.5s linear;
   }
   &:hover {
     background-color: darken($input-color, 15%);
@@ -90,9 +90,9 @@ body {
   border-radius: 7px;
   margin: 20px auto 0;
   cursor: pointer;
-  -webkit-transition: -webkit-transform .5s ease-in-out;
-  -moz-transition: -moz-transform .5s ease-in-out;
-  transition: transform .5s ease-in-out;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  -moz-transition: -moz-transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -106,9 +106,10 @@ body {
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-transition: background-color .5s ease-in-out;
-    -moz-transition: background-color .5s ease-in-out;
-    transition: background-color .5s ease-in-out;
+    -webkit-transition: background-color 0.5s ease-in-out;
+    -moz-transition: background-color 0.5s ease-in-out;
+    transition: background-color 0.5s ease-in-out;
+    user-select: none;
   }
   &-front {
     background-color: $card-color;
@@ -175,7 +176,7 @@ body {
         }
         &-speed {
           font-size: 2.5em;
-          padding-top: .73em;
+          padding-top: 0.73em;
         }
       }
     }
@@ -209,9 +210,9 @@ body {
   outline: none;
   width: 350px;
   cursor: pointer;
-  -webkit-transition: background .5s ease-in-out;
-  -moz-transition: background .5s ease-in-out;
-  transition: background .5s ease-in-out;
+  -webkit-transition: background 0.5s ease-in-out;
+  -moz-transition: background 0.5s ease-in-out;
+  transition: background 0.5s ease-in-out;
   &:hover {
     background-color: lighten($button-color, 20%);
   }
@@ -227,9 +228,10 @@ body {
     padding: 30px 0;
     width: 50%;
     text-align: center;
-    -webkit-transition: background .5s ease-in-out;
-    -moz-transition: background .5s ease-in-out;
-    transition: background .5s ease-in-out;
+    -webkit-transition: background 0.5s ease-in-out;
+    -moz-transition: background 0.5s ease-in-out;
+    transition: background 0.5s ease-in-out;
+    user-select: none;
   }
   .cel {
     border-top-left-radius: 7px;
