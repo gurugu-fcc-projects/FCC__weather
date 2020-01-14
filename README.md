@@ -10,7 +10,7 @@ This is an old project, it isn't featured anymore at FreeCodeCamp. It was fun at
 
 ## Links
 - [ ] this project at codepen: [https://codepen.io/GuRuGu/full/bvKQyb/](https://codepen.io/GuRuGu/full/bvKQyb/)
-- [ ] this project at gh-pages: [https://gurugumawaru.github.io/FCC_weather/](https://gurugumawaru.github.io/FCC_weather/)
+- [ ] this project at gh-pages: [https://gurugu-fcc-projects.github.io/FCC__weather/](https://gurugu-fcc-projects.github.io/FCC__weather/)
 - [ ] freecodecamp challenge: [https://learn.freecodecamp.org/coding-interview-prep/take-home-projects/show-the-local-weather](https://learn.freecodecamp.org/coding-interview-prep/take-home-projects/show-the-local-weather)
 
 ## Video Walkthrough
